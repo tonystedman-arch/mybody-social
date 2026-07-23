@@ -1,0 +1,34 @@
+name: Refresh IG token (monthly)
+
+# OPTIONAL. Long-lived tokens last ~60 days. This refreshes the token monthly
+# and stores it back as the IG_ACCESS_TOKEN secret, so the daily poster never
+# stops. Requires extra secrets: FB_APP_ID, FB_APP_SECRET, and GH_PAT
+# (a fine-grained PAT with "Secrets: read and write" on this repo).
+# If you'd rather refresh by hand every ~50 days, delete this file.
+
+on:
+  schedule:
+    - cron: "0 6 1 * *"   # 06:00 UTC on the 1st of each month
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Exchange for a fresh long-lived token
+        id: refresh
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          FB_APP_ID: ${{ secrets.FB_APP_ID }}
+          FB_APP_SECRET: ${{ secrets.FB_APP_SECRET }}
+          GRAPH_VERSION: v21.0
+        run: node refresh-token.js
+      - name: Store the new token as a secret
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          gh secret set IG_ACCESS_TOKEN --repo "$GITHUB_REPOSITORY" --body "${{ steps.refresh.outputs.new_token }}"

@@ -1,0 +1,59 @@
+[
+  {
+    "date": "2026-07-24",
+    "pillar": "family-opener",
+    "images": ["post-01-mon-family.png"],
+    "caption": "Three apps. One body. One account. Optimise tracks the protocol, Move logs the training, Fuel guards the protein — and because they share a login, they actually talk to each other. Most trackers make you stitch that together yourself. Launching together, days away. 18+. Personal tracking, not medical advice.",
+    "hashtags": "#peptides #TRT #biohacking #healthoptimisation #quantifiedself #madeintheuk"
+  },
+  {
+    "date": "2026-07-25",
+    "pillar": "number",
+    "images": ["post-02-tue-number.png"],
+    "caption": "Not a step count. An alignment score. One number for how well your weight, your strength and your protein line up with the goal you actually set — computed across all three apps. No single-app tracker can draw it. Coming soon.",
+    "hashtags": "#biohacking #longevity #peptides #GLP1 #healthtech #quantifiedself"
+  },
+  {
+    "date": "2026-07-26",
+    "pillar": "private-free",
+    "images": ["post-04-thu-private-free.png"],
+    "caption": "Free to start. Never tracked. Every app's core is free at launch — no trial countdown, no paywall the second you open it — and we don't sell your data or run ad tracking. Most health apps treat your data as the product. We built the opposite. Coming soon.",
+    "hashtags": "#privacy #peptides #biohacking #healthtech #freeapp #indiedev"
+  },
+  {
+    "date": "2026-07-27",
+    "pillar": "educational",
+    "images": [
+      "post-03-wed-carousel-cover.png",
+      "post-03-carousel-02.png",
+      "post-03-carousel-03.png",
+      "post-03-carousel-04.png",
+      "post-03-carousel-05.png",
+      "post-03-carousel-06.png",
+      "post-03-carousel-07.png"
+    ],
+    "caption": "Tracking a protocol is the difference between guessing and knowing — but most people get a few things wrong. Here are 5. Swipe 👉 and save it for your next cycle. (Educational only, not medical advice.)",
+    "hashtags": "#peptides #biohacking #TRT #healthoptimisation #longevity"
+  },
+  {
+    "date": "2026-07-28",
+    "pillar": "family-hero",
+    "images": ["post-05-fri-picture.png"],
+    "caption": "\"Weight down 2.4kg, strength held, protein averaged 142g a day.\" That's one sentence — drawn from three apps sharing one account. It's the line a coach actually wants, and the thing no standalone tracker can write. Coming soon.",
+    "hashtags": "#peptides #TRT #GLP1 #biohacking #protein #healthoptimisation"
+  },
+  {
+    "date": "2026-07-29",
+    "pillar": "number-glp1",
+    "images": ["post-07-bonus-glp1.png"],
+    "caption": "On a GLP-1? Appetite down, muscle defended. The weight comes off fast — Fuel keeps your protein floor in sight so what you lose is fat, not muscle, and it logs how the protocol actually makes you feel. Part of the My Body family. Coming soon. 18+.",
+    "hashtags": "#GLP1 #semaglutide #tirzepatide #weightloss #protein #biohacking"
+  },
+  {
+    "date": "2026-07-30",
+    "pillar": "countdown",
+    "images": ["post-06-sat-countdown.png"],
+    "caption": "It's out of our hands. All three apps — Optimise, Move and Fuel — are with Apple for review. Months of building, and now we wait like everyone else. Built in the UK, launching together, days away. Turn on notifications to be first in.",
+    "hashtags": "#buildinpublic #indiedev #peptides #biohacking #madeintheuk #comingsoon"
+  }
+]

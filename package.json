@@ -1,0 +1,13 @@
+{
+  "name": "mybody-social-automation",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Auto-post My Body's daily Instagram content via the Meta Content Publishing API, on a free GitHub Actions cron.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "post": "node post.js",
+    "post:dry": "DRY_RUN=true node post.js",
+    "refresh-token": "node refresh-token.js"
+  }
+}

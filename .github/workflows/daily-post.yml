@@ -1,0 +1,39 @@
+name: Daily Instagram post
+
+# Posts the scheduled entry for today (Europe/London) to Instagram.
+# Runs at 07:00 UTC ≈ 08:00 UK (BST). GitHub may delay scheduled runs by a
+# few minutes under load — fine for a morning post. You can also run it
+# manually from the Actions tab (with an optional date override / dry run).
+
+on:
+  schedule:
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+    inputs:
+      date_override:
+        description: "Force a date (YYYY-MM-DD). Leave blank for today."
+        required: false
+        default: ""
+      dry_run:
+        description: "Dry run (log the API calls, do not publish)"
+        type: boolean
+        required: false
+        default: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Publish today's post
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          GRAPH_VERSION: v21.0
+          IMAGE_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/images
+          DATE_OVERRIDE: ${{ github.event.inputs.date_override }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: node post.js
