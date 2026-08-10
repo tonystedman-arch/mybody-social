@@ -31,9 +31,13 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install Pillow and ffmpeg
+      # numpy is not optional: build_music.py synthesises the heartbeat track
+      # with it, and build_reels.py imports build_music at module load, so a
+      # missing numpy fails the whole reel step even though the end cards
+      # (Pillow only) render fine. Run #2 died exactly there on 10 Aug 2026.
+      - name: Install Pillow, numpy and ffmpeg
         run: |
-          python -m pip install --quiet pillow
+          python -m pip install --quiet pillow numpy
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
 
       # Invoked through bash rather than as ./build/build-all.sh. The repo is
