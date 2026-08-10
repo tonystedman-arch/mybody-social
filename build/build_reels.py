@@ -49,6 +49,8 @@ SPEC = os.environ.get('REELS_SPEC') or os.path.join(HERE, 'reels.json')
 
 W, H, FPS = 1080, 1920, 30
 
+XFADE_DEFAULT = 0.35      # seconds of crossfade between segments that differ
+
 THEMES = {
     'dark':  dict(bg=(23, 23, 26), ink=(250, 250, 249), muted=(168, 168, 176), accent=(139, 133, 240)),
     'light': dict(bg=(250, 250, 249), ink=(23, 23, 26), muted=(92, 92, 99), accent=(79, 70, 229)),
@@ -173,24 +175,55 @@ def build(reel):
 
     segments = []
 
-    # 1. hook — the first three seconds, which carry most of the completion rate
-    hook_src = reel['beats'][0]['src']
+    # 1. hook — the first two seconds, which decide everything.
+    #
+    # Three things were wrong here until 5 Aug 2026, and the Facebook insights
+    # on h3-deadline showed the cost precisely: 179 views, 164 viewers, average
+    # watch time TWO SECONDS, with the retention curve falling off a cliff at
+    # the 0:02 mark. Reach was fine — most of it came from Recommendations —
+    # so distribution was not the problem. The opening was.
+    #
+    #   a) The hook text faded in over 0.45s on top of the segment crossfade,
+    #      so frame 0 carried NO WORDS AT ALL. The thumbnail, and the first
+    #      thing anyone saw, was an anonymous dark dashboard.
+    #   b) The hook reused beats[0]['src'], so the picture did not change for
+    #      the first six and a half seconds. Nothing happened, so nobody stayed.
+    #   c) Crossfading two segments that share a background image ghosted the
+    #      two text layers over each other. At 0:03 the frame was a legible
+    #      double exposure. It read as a broken render, not a dissolve.
+    #
+    # Hence: hookSrc (default: a different capture from beat 1), tdelay=0 so
+    # the words are on frame 0, and a hard cut wherever neighbouring segments
+    # share an image. Keep it that way.
+    # hookStyle 'type' drops the screenshot entirely and opens on words alone.
+    # It also satisfies rule 2 in reels.json — never illustrate the problem with
+    # our own screens — because the first device shot then arrives as the answer.
+    # 'type' is the default for the whole campaign as of 5 Aug 2026. Set
+    # hookStyle 'device' on an individual reel to put a screenshot back.
+    hook_style = reel.get('hookStyle', 'type')
+    hook_src = None if hook_style == 'type' else (
+        reel.get('hookSrc') or reel['beats'][0]['src'])
     segments.append(dict(
-        kind='hook',
-        dev=device_layer(os.path.join(RAW, hook_src)),
-        text=text_layer(reel['hook'], 'SemiBold', 76, theme['ink'], 900, 'center',
-                        tname, scrim=0.94),
-        dur=reel.get('hookDur', 3.0),
+        kind='hook', src=hook_src or '__type__',
+        dev=device_layer(os.path.join(RAW, hook_src)) if hook_src else None,
+        text=text_layer(reel['hook'], 'SemiBold',
+                        reel.get('hookSize', 86 if hook_src else 96),
+                        theme['ink'], 930,
+                        reel.get('hookAlign', 'top' if hook_src else 'center'),
+                        tname, scrim=0.96 if hook_src else None),
+        dur=reel.get('hookDur', 2.2),
+        tdelay=0.0,
     ))
 
     # 2. beats
     for b in reel['beats']:
         segments.append(dict(
-            kind='beat',
+            kind='beat', src=b['src'],
             dev=device_layer(os.path.join(RAW, b['src'])),
             text=(text_layer(b['text'], 'Medium', 52, theme['ink'], 880, 'bottom',
                              tname, scrim=0.88) if b.get('text') else None),
             dur=b.get('dur', 3.4),
+            tdelay=0.28,
         ))
 
     # 3. end card
@@ -199,12 +232,20 @@ def build(reel):
     card = card.resize((W, int(card.height * W / card.width)), Image.LANCZOS)
     card_canvas = Image.new('RGB', (W, H), theme['bg'])
     card_canvas.paste(card, (0, (H - card.height) // 2))
-    segments.append(dict(kind='card', flat=card_canvas, dur=reel.get('cardDur', 2.4)))
+    segments.append(dict(kind='card', flat=card_canvas, src=None,
+                         dur=reel.get('cardDur', 2.4), tdelay=0.0))
+
+    # Per-segment crossfade. A dissolve between two segments that share a
+    # background image does not read as a dissolve — it superimposes both text
+    # layers and looks like a rendering fault. Cut hard instead.
+    for i, s in enumerate(segments):
+        prev = segments[i - 1] if i else None
+        same_picture = bool(prev and s.get('src') and s['src'] == prev.get('src'))
+        s['xf'] = 0.0 if (i == 0 or same_picture) else XFADE_DEFAULT
 
     total = sum(s['dur'] for s in segments)
     total_frames = int(total * FPS)
 
-    XFADE = 0.35          # seconds of crossfade between segments
     DRIFT = 46            # pixels of vertical camera drift per segment
 
     # Snap every segment to a half-bar so the cuts land on the beat. This is
@@ -263,13 +304,13 @@ def build(reel):
 
         for si, s in enumerate(segments):
             s0, s1 = starts[si], starts[si] + s['dur']
-            if t < s0 - XFADE or t >= s1:
+            xf = s['xf']
+            if t < s0 - xf or t >= s1:
                 continue
-            # alpha: fade in over XFADE at the start of every segment after the first
-            if si > 0 and t < s0:
-                a = (t - (s0 - XFADE)) / XFADE
-            elif si > 0 and t < s0 + XFADE:
-                a = min(1.0, (t - s0) / XFADE + 0.999)
+            # Fade in over this segment's own crossfade. xf == 0 is a hard cut,
+            # which is what neighbouring segments sharing a picture must get.
+            if xf > 0 and t < s0:
+                a = (t - (s0 - xf)) / xf
             else:
                 a = 1.0
             a = max(0.0, min(1.0, a))
@@ -283,20 +324,25 @@ def build(reel):
                 continue
 
             dev = s['dev']
-            # drift downward slowly; hook sits slightly lower and rises
-            if s['kind'] == 'hook':
-                y = 250 - int(DRIFT * local)
-            else:
-                y = 168 + int(DRIFT * (local - 0.5))
-            x = (W - dev.width) // 2
+            if dev is not None:
+                # drift downward slowly; hook sits slightly lower and rises
+                if s['kind'] == 'hook':
+                    y = 250 - int(DRIFT * local)
+                else:
+                    y = 168 + int(DRIFT * (local - 0.5))
+                x = (W - dev.width) // 2
 
-            df = fade(dev, a)
-            if df: frame.paste(df, (x, y), df)
+                df = fade(dev, a)
+                if df: frame.paste(df, (x, y), df)
 
             if s['text'] is not None:
-                # text arrives just after the screen settles
-                ta = a * min(1.0, max(0.0, (local * s['dur']) / 0.45))
-                tf = fade(s['text'], ta)
+                # Beat text arrives just after the screen settles; hook text has
+                # tdelay 0 and is therefore fully present on frame 0. That single
+                # value is the difference between a thumbnail that says something
+                # and one that says nothing.
+                td = s.get('tdelay', 0.28)
+                ramp = 1.0 if td <= 0 else min(1.0, max(0.0, (t - s0) / td))
+                tf = fade(s['text'], a * ramp)
                 if tf: frame.paste(tf, (0, 0), tf)
 
         # progress hairline — small polish detail, reads as "there is an end"

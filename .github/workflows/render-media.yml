@@ -36,8 +36,13 @@ jobs:
           python -m pip install --quiet pillow
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
 
+      # Invoked through bash rather than as ./build/build-all.sh. The repo is
+      # pushed from Windows, where git does not record the executable bit, so
+      # the script lands in CI as mode 100644 and running it directly fails
+      # with exit code 126 ("cannot execute"). Calling bash explicitly makes
+      # the file mode irrelevant. Run #1 failed exactly this way on 10 Aug 2026.
       - name: Rebuild every asset
-        run: ./build/build-all.sh
+        run: bash build/build-all.sh
 
       - name: Commit the rebuilt media
         run: |
