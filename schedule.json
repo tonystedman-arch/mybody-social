@@ -1,59 +1,192 @@
-[
-  {
-    "date": "2026-07-24",
-    "pillar": "family-opener",
-    "images": ["post-01-mon-family.png"],
-    "caption": "Three apps. One body. One account. Optimise tracks the protocol, Move logs the training, Fuel guards the protein — and because they share a login, they actually talk to each other. Most trackers make you stitch that together yourself. Launching together, days away. 18+. Personal tracking, not medical advice.",
-    "hashtags": "#peptides #TRT #biohacking #healthoptimisation #quantifiedself #madeintheuk"
-  },
-  {
-    "date": "2026-07-25",
-    "pillar": "number",
-    "images": ["post-02-tue-number.png"],
-    "caption": "Not a step count. An alignment score. One number for how well your weight, your strength and your protein line up with the goal you actually set — computed across all three apps. No single-app tracker can draw it. Coming soon.",
-    "hashtags": "#biohacking #longevity #peptides #GLP1 #healthtech #quantifiedself"
-  },
-  {
-    "date": "2026-07-26",
-    "pillar": "private-free",
-    "images": ["post-04-thu-private-free.png"],
-    "caption": "Free to start. Never tracked. Every app's core is free at launch — no trial countdown, no paywall the second you open it — and we don't sell your data or run ad tracking. Most health apps treat your data as the product. We built the opposite. Coming soon.",
-    "hashtags": "#privacy #peptides #biohacking #healthtech #freeapp #indiedev"
-  },
-  {
-    "date": "2026-07-27",
-    "pillar": "educational",
-    "images": [
-      "post-03-wed-carousel-cover.png",
-      "post-03-carousel-02.png",
-      "post-03-carousel-03.png",
-      "post-03-carousel-04.png",
-      "post-03-carousel-05.png",
-      "post-03-carousel-06.png",
-      "post-03-carousel-07.png"
-    ],
-    "caption": "Tracking a protocol is the difference between guessing and knowing — but most people get a few things wrong. Here are 5. Swipe 👉 and save it for your next cycle. (Educational only, not medical advice.)",
-    "hashtags": "#peptides #biohacking #TRT #healthoptimisation #longevity"
-  },
-  {
-    "date": "2026-07-28",
-    "pillar": "family-hero",
-    "images": ["post-05-fri-picture.png"],
-    "caption": "\"Weight down 2.4kg, strength held, protein averaged 142g a day.\" That's one sentence — drawn from three apps sharing one account. It's the line a coach actually wants, and the thing no standalone tracker can write. Coming soon.",
-    "hashtags": "#peptides #TRT #GLP1 #biohacking #protein #healthoptimisation"
-  },
-  {
-    "date": "2026-07-29",
-    "pillar": "number-glp1",
-    "images": ["post-07-bonus-glp1.png"],
-    "caption": "On a GLP-1? Appetite down, muscle defended. The weight comes off fast — Fuel keeps your protein floor in sight so what you lose is fat, not muscle, and it logs how the protocol actually makes you feel. Part of the My Body family. Coming soon. 18+.",
-    "hashtags": "#GLP1 #semaglutide #tirzepatide #weightloss #protein #biohacking"
-  },
-  {
-    "date": "2026-07-30",
-    "pillar": "countdown",
-    "images": ["post-06-sat-countdown.png"],
-    "caption": "It's out of our hands. All three apps — Optimise, Move and Fuel — are with Apple for review. Months of building, and now we wait like everyone else. Built in the UK, launching together, days away. Turn on notifications to be first in.",
-    "hashtags": "#buildinpublic #indiedev #peptides #biohacking #madeintheuk #comingsoon"
-  }
-]
+{
+  "_comment": [
+    "My Body — Pro launch campaign schedule (v2). The v1 dated image schedule is",
+    "kept at schedule-v1-archived.json.",
+    "",
+    "mode 'sequence': the campaign runs in order from whenever the gate opens,",
+    "not against fixed dates that would silently expire if App Review runs long.",
+    "Until LAUNCH_STATUS is 'pro_live', gated posts hold and the holding queue",
+    "rotates instead, so the account never goes quiet.",
+    "",
+    "requires 'pro_live' = the copy names a price or claims Pro is live.",
+    "Copy source of truth: marketing/content/My Body - Pro Launch Instagram",
+    "Campaign v2 (Aug 2026).md. Media built by tools/reel-rig.",
+    "",
+    "The only price verified in App Store Connect is £49.99/year for",
+    "com.mybodyoptimise.family.pro.annual. No other figure appears here."
+  ],
+  "mode": "sequence",
+  "holding": [
+    {
+      "id": "h1-three-apps",
+      "type": "reel",
+      "requires": "none",
+      "video": "h1-three-apps.mp4",
+      "cover": "h1-three-apps-cover.jpg",
+      "caption": "Four months in. Could you actually prove it is working?\n\nYou logged the doses. You did the sessions. You hit the protein. And if someone asked you tomorrow whether any of it was working, the honest answer would still be a shrug — because the evidence is sitting in three apps that have never heard of each other.\n\nMy Body is three apps too. The difference is one account, so they share a timeline and the answer is just there.\n\nFree on the App Store.\n\n18+. Personal tracking, not medical advice.",
+      "hashtags": "#GLP1 #TRT #peptides #biohacking #quantifiedself #madeintheuk"
+    },
+    {
+      "id": "h2-three-seconds",
+      "type": "reel",
+      "requires": "none",
+      "video": "h2-three-seconds.mp4",
+      "cover": "h2-three-seconds-cover.jpg",
+      "caption": "The reason you stopped logging last time was the logging.\n\nLast session's numbers are already filled in, the rest timer starts itself, and the plate maths is done. Three seconds a set — because every extra tap is a rep you did not do.\n\nFree on the App Store.",
+      "hashtags": "#gymtok #strengthtraining #liftingheavy #hyrox #workoutlog"
+    },
+    {
+      "id": "h3-deadline",
+      "type": "reel",
+      "requires": "none",
+      "until": "2026-08-07",
+      "_until_reason": "MONETIZATION_SWITCH_ON is 2026-08-08 in all three apps. This post advertises that cutoff, so it must stop rotating the day before.",
+      "video": "h3-deadline.mp4",
+      "cover": "h3-deadline-cover.jpg",
+      "caption": "Everyone who signs up before 8 August gets six months free.\n\nNot a discount code and not a fake timer. If your account exists before that date, six months of Pro is already on it.\n\nThree apps. One account. Link in bio.",
+      "hashtags": "#earlyadopter #biohacking #GLP1 #TRT #healthtech"
+    },
+    {
+      "id": "receipt",
+      "type": "reel",
+      "requires": "none",
+      "video": "receipt.mp4",
+      "cover": "receipt-cover.jpg",
+      "caption": "Sixteen weeks, in one frame.\n\nWeight, squat, protein, sessions and sleep, either side of one protocol window. Sleep is in amber because it went the wrong way, and leaving that out would make the other four worth less.\n\nNo single-app tracker holds all five, which is why this is one account across three apps rather than three separate logins.\n\nSample data, not a real user.\n\n18+. Personal tracking, not medical advice.",
+      "hashtags": "#TRT #GLP1 #peptides #bloodwork #biohacking"
+    }
+  ],
+  "posts": [
+    {
+      "id": "d01-the-sentence",
+      "type": "reel",
+      "requires": "pro_live",
+      "video": "d01-the-sentence.mp4",
+      "cover": "d01-the-sentence-cover.jpg",
+      "story": "d01-the-sentence.mp4",
+      "caption": "This is the sentence you want to be able to say out loud.\n\n\"Down six kilos. Strength held. Protein at 142 a day.\"\n\nThat takes three datasets, and almost nobody has them in one place — so most people can prove the first part and guess at the rest. My Body is three apps on one account, which is the only reason the sentence writes itself.\n\nMy Body Pro unlocks all three, £49.99 a year with the first week free. The core of every app stays free.\n\n18+. Personal tracking, not medical advice.",
+      "hashtags": "#GLP1 #TRT #peptides #biohacking #quantifiedself"
+    },
+    {
+      "id": "d02-receipts",
+      "type": "reel",
+      "requires": "none",
+      "video": "d02-receipts.mp4",
+      "cover": "d02-receipts-cover.jpg",
+      "caption": "You will not remember what you did in March.\n\nYou think you will. Nobody does. Six months from now the doses, the sessions and the weeks you actually held the line will have blurred into a general sense that you were trying quite hard.\n\nThat is the whole job: something quietly writing it down, so the effort still exists later.\n\nFree to start. Three apps, one account.\n\n18+. Personal tracking, not medical advice.",
+      "hashtags": "#biohacking #healthtech #quantifiedself #indiedev"
+    },
+    {
+      "id": "d03-scan-label",
+      "type": "reel",
+      "requires": "none",
+      "video": "d03-scan-label.mp4",
+      "cover": "d03-scan-label-cover.jpg",
+      "caption": "The reason you gave up tracking last time was the setting up.\n\nPoint your camera at the label. On-device text recognition reads it and builds the protocol — no upload, and the image never leaves your phone. That is the setup, done.\n\nFree: one protocol, logging, reminders, site rotation.\n\n18+. Personal tracking, not medical advice.",
+      "hashtags": "#peptides #TRT #GLP1 #bloodwork #biohacking"
+    },
+    {
+      "id": "d04-overlay",
+      "type": "reel",
+      "requires": "pro_live",
+      "video": "d04-overlay.mp4",
+      "cover": "d04-overlay-cover.jpg",
+      "caption": "I needed to know whether any of it was actually doing anything.\n\nSo the strength chart marks the day you started. Move takes that date from Optimise, because they share an account — a standalone workout app has no idea what you are running, so it can never draw that line.\n\nThe overlay is in Pro, which covers all three apps for £49.99 a year, first week free.\n\n18+. Personal tracking, not medical advice.",
+      "hashtags": "#gymtok #strengthtraining #TRT #liftingheavy #quantifiedself"
+    },
+    {
+      "id": "d05-it-knew",
+      "type": "reel",
+      "requires": "none",
+      "video": "d05-it-knew.mp4",
+      "cover": "d05-it-knew-cover.jpg",
+      "caption": "I never turned this on. It just knew.\n\nFuel saw a GLP-1 protocol logged in Optimise and switched itself to muscle-retention mode — protein first, calories second, portions sized for an appetite that is not there.\n\nThere is no setting for it. That is the point of one account.",
+      "hashtags": "#GLP1 #semaglutide #proteingoals #nutrition #weightloss"
+    },
+    {
+      "id": "d06-stop-calories",
+      "type": "reel",
+      "requires": "none",
+      "video": "d06-stop-calories.mp4",
+      "cover": "d06-stop-calories-cover.jpg",
+      "caption": "The weight is coming off. That is not the part to watch.\n\nOn a GLP-1 you are almost certainly already eating under, so counting down from a number you will undershoot anyway tells you very little. What decides how much of the loss is fat and how much is muscle is protein.\n\nFuel leads with grams-to-go and puts calories second. Free to use.\n\nNot medical advice. Talk to your prescriber.",
+      "hashtags": "#GLP1 #semaglutide #tirzepatide #proteingoals #musclepreservation"
+    },
+    {
+      "id": "d07-receipts-week1",
+      "type": "reel",
+      "requires": "pro_live",
+      "skip": true,
+      "_skip_reason": "Real figures must replace the placeholders first. Edit the caption, then set skip to false.",
+      "video": "d07-receipts-week1.mp4",
+      "cover": "d07-receipts-week1-cover.jpg",
+      "story": "d07-receipts-week1.mp4",
+      "caption": "Week one of charging money. Here's the number I'd rather not post.\n\n[subscribers] subscribers, [downloads] downloads, [refunds] refunds, [cancellations] cancellations.\n\nBuilding this in the open, which means the bad weeks get posted at the same size as the good ones.",
+      "hashtags": "#buildinpublic #indiedev #startup #healthtech"
+    },
+    {
+      "id": "d08-alignment",
+      "type": "reel",
+      "requires": "pro_live",
+      "video": "d08-alignment.mp4",
+      "cover": "d08-alignment-cover.jpg",
+      "caption": "You are doing everything right. You just cannot see it yet.\n\nYour strength says one thing, your protein says another, and your weight says a third — and none of them, alone, answers the question you are actually asking.\n\nThe alignment score is one number for how well all three line up with the goal you set. A single-app tracker cannot draw it, because it does not have the data.\n\nIn My Body Pro. First week free.",
+      "hashtags": "#quantifiedself #biohacking #healthtech #GLP1 #TRT"
+    },
+    {
+      "id": "d09-airplane-mode",
+      "type": "reel",
+      "requires": "none",
+      "video": "d09-airplane-mode.mp4",
+      "cover": "d09-airplane-mode-cover.jpg",
+      "caption": "Nobody in my life knows I am on this.\n\nThat is more common than anyone admits, and it is why this app is built the way it is. It works with the phone in airplane mode. Progress photos never leave the device. Face ID on the app. No ads, no data sales, no tracking, no analytics on your health data.\n\nWhen a health app is free and you cannot see how it makes money, you already know how it makes money. Ours is the subscription, on purpose.\n\n18+. Personal tracking, not medical advice.",
+      "hashtags": "#privacy #healthtech #biohacking #indiedev"
+    },
+    {
+      "id": "d10-only-one",
+      "type": "reel",
+      "requires": "pro_live",
+      "video": "d10-only-one.mp4",
+      "cover": "d10-only-one-cover.jpg",
+      "caption": "\"I only want the workout one.\"\n\nCompletely fair, and it is how most people arrive. Every app has a plan of its own, and it upgrades into the full family whenever you want the other two — without paying twice.\n\nThe bundle exists because it is cheaper than three, not because you are obliged to take it.",
+      "hashtags": "#gymtok #proteingoals #peptides #healthtech"
+    },
+    {
+      "id": "d11-one-fortnight",
+      "type": "reel",
+      "requires": "none",
+      "video": "d11-one-fortnight.mp4",
+      "cover": "d11-one-fortnight-cover.jpg",
+      "caption": "You already have the answer. It is sitting in three different places.\n\nA fortnight of protocol. The same fortnight of training. The same fortnight of food. Separately, each one is a chart you glance at. Together, on one x-axis, they are the only honest picture of what you have been doing.\n\nOne account means one timeline. Every insight in the product comes from that and nothing else.\n\n18+. Personal tracking, not medical advice.",
+      "hashtags": "#biohacking #GLP1 #TRT #gymtok #quantifiedself"
+    },
+    {
+      "id": "d12-priced-against",
+      "type": "reel",
+      "requires": "pro_live",
+      "video": "d12-priced-against.mp4",
+      "cover": "d12-priced-against-cover.jpg",
+      "caption": "I did not want to charge you three times for one body.\n\nThree apps, one account, built to share data from the first day. Charging separately for each of them would have been taking money for a problem we deliberately did not create.\n\nSo My Body Pro is one subscription across all three — £49.99 a year, first week free, and the core of every app stays free.\n\nRoughly two apps' worth of money for three apps. That was the target when we set it.",
+      "hashtags": "#healthtech #biohacking #quantifiedself #indiedev"
+    },
+    {
+      "id": "d13-couldnt-answer",
+      "type": "reel",
+      "requires": "none",
+      "video": "d13-couldnt-answer.mp4",
+      "cover": "d13-couldnt-answer-cover.jpg",
+      "caption": "A doctor asked what I had actually been doing. I could not answer.\n\nEverything was written down somewhere. None of it was written down together, so there was no version of the last six months I could show anyone — including myself.\n\nThat is the app. Free to start, three apps, one account.\n\n18+. Personal tracking, not medical advice.",
+      "hashtags": "#buildinpublic #biohacking #GLP1 #TRT #indiedev"
+    },
+    {
+      "id": "d14-what-changed",
+      "type": "reel",
+      "requires": "pro_live",
+      "video": "d14-what-changed.mp4",
+      "cover": "d14-what-changed-cover.jpg",
+      "story": "d14-what-changed.mp4",
+      "caption": "You were worried I would take something away.\n\nI would not. Every feature that was free on launch day is still free and stays free. My Body Pro added the deeper end on top — full history, the analytics, unlimited protocols, the cross-app picture.\n\nOne subscription, three apps, £49.99 a year, first week free. Link in bio.",
+      "hashtags": "#GLP1 #TRT #peptides #gymtok #proteingoals #madeintheuk"
+    }
+  ]
+}

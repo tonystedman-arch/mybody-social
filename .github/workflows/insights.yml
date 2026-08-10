@@ -1,0 +1,40 @@
+name: Weekly performance report
+
+# Every Monday, pulls Instagram insights for everything published and commits
+# REPORT.md. It exists to answer one question: which post gets the £50 boost.
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"        # 08:00 UTC Monday
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Pull insights
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          GRAPH_VERSION: v21.0
+        run: node insights.js
+
+      - name: Commit the report
+        run: |
+          if [ -n "$(git status --porcelain REPORT.md)" ]; then
+            git config user.name  "my-body-bot"
+            git config user.email "bot@mybodyoptimise.com"
+            git add REPORT.md
+            git commit -m "insights: weekly report $(date -u +%Y-%m-%d)"
+            git push
+          else
+            echo "No change in REPORT.md."
+          fi

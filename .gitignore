@@ -2,3 +2,30 @@ node_modules/
 new_token.txt
 *.log
 .env
+
+# ─── Never publish these ─────────────────────────────────────────────────
+# This repo has to be PUBLIC, because Instagram's Content Publishing API
+# does not accept an upload — you give it a URL and Meta fetches the file.
+# So everything committed here is world-readable, permanently, including
+# anything you later delete but do not rewrite out of history.
+#
+# STATUS.md is an internal working log. As of 10 Aug 2026 it contained a
+# personal mobile number and a personal email address, which is exactly the
+# sort of thing that must not end up in a public repo. It has never been
+# committed — keep it that way.
+STATUS.md
+START-HERE.md
+
+# Build scratch.
+__pycache__/
+*.pyc
+
+# Guideline 1.4.2. These two raw captures show the reconstitution calculator
+# and estimated levels. reels.json deliberately never uses them, and Optimise
+# has been rejected twice under 1.4.2 already. Publishing them to a public
+# repo under the app's own name is avoidable exposure for no benefit.
+build/raw/opt-03-calculator.png
+build/raw/opt-04-levels.png
+
+# Before adding anything here, ask: would I be happy for this to be on the
+# open internet under my own name, forever? If not, it does not go in.

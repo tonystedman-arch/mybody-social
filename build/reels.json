@@ -1,0 +1,234 @@
+{
+  "_comment": [
+    "Reel specs for the v2 Pro launch campaign. Copy is the source of truth in",
+    "marketing/content/My Body - Pro Launch Instagram Campaign v2 (Aug 2026).md",
+    "— keep the hooks here identical to that file.",
+    "",
+    "TWO RULES THIS FILE EXISTS TO ENFORCE:",
+    "",
+    "1. NO HOOK NAMES A PRICE. Not one. Price is a closing line in a caption and",
+    "   a number on the paywall. Nobody has ever stopped scrolling for a pricing",
+    "   architecture. Every hook below opens on doubt, fear, secrecy, waste or",
+    "   relief — the things this audience actually feels.",
+    "",
+    "2. NEVER ILLUSTRATE THE PROBLEM WITH OUR OWN SCREENS. Say the problem in",
+    "   words; show our apps only as the answer. An earlier draft put 'none of",
+    "   them talk to each other' over our own screenshots, which reads as a",
+    "   confession rather than a diagnosis.",
+    "",
+    "requires: 'pro_live' means the post claims Pro is buyable or names a price,",
+    "so the poster must refuse it until store/submissions/launch-status.txt says",
+    "the subscriptions are approved.",
+    "",
+    "Guideline 1.4.2: opt-03-calculator.png and opt-04-levels.png are deliberately",
+    "unused. Do not add them to any beat."
+  ],
+  "reels": [
+    {
+      "id": "h1-three-apps",
+      "requires": "none",
+      "theme": "dark",
+      "hook": "Four months in.\nCould you actually prove it is working?",
+      "beats": [
+        { "src": "opt-01-today.png", "text": "You logged the doses.", "dur": 3.0 },
+        { "src": "move-06-progress.png", "text": "You did the sessions.", "dur": 3.0 },
+        { "src": "fuel-05b-progress.png", "text": "You hit the protein.", "dur": 3.0 },
+        { "src": "fuel-06-mybody.png", "text": "The proof only appears when they share a timeline.", "dur": 3.6 }
+      ],
+      "endCard": "h1-three-apps.png"
+    },
+    {
+      "id": "h2-three-seconds",
+      "requires": "none",
+      "theme": "light",
+      "hook": "The reason you stopped logging\nlast time was the logging.",
+      "beats": [
+        { "src": "move-02-start.png", "text": "Last session's numbers are already there.", "dur": 3.2 },
+        { "src": "move-05-workout-detail.png", "text": "The rest timer starts itself.", "dur": 3.2 },
+        { "src": "move-06-progress.png", "text": "Three seconds a set. That is the whole bar.", "dur": 3.6 }
+      ],
+      "endCard": "h2-three-seconds.png"
+    },
+    {
+      "id": "h3-deadline",
+      "requires": "none",
+      "theme": "dark",
+      "hook": "Everyone who signs up before 8 August\ngets six months free.",
+      "beats": [
+        { "src": "opt-01-today.png", "text": "No code. No countdown.", "dur": 3.2 },
+        { "src": "fuel-06-mybody.png", "text": "If your account exists before that date, it is applied.", "dur": 3.8 }
+      ],
+      "endCard": "h3-deadline.png"
+    },
+
+    {
+      "id": "d01-the-sentence",
+      "requires": "pro_live",
+      "theme": "dark",
+      "hook": "This is the sentence you want\nto be able to say out loud.",
+      "beats": [
+        { "src": "opt-01-today.png", "text": "Down six kilos.", "dur": 2.8 },
+        { "src": "move-06-progress.png", "text": "Strength held.", "dur": 2.8 },
+        { "src": "fuel-05b-progress.png", "text": "Protein at 142 a day.", "dur": 2.8 },
+        { "src": "fuel-06-mybody.png", "text": "Three datasets. One account. It writes itself.", "dur": 3.8 }
+      ],
+      "endCard": "d01-the-sentence.png"
+    },
+    {
+      "id": "d02-receipts",
+      "requires": "none",
+      "theme": "light",
+      "hook": "You will not remember\nwhat you did in March.",
+      "beats": [
+        { "src": "opt-02-log-sheet.png", "text": "You think you will. You will not.", "dur": 3.0 },
+        { "src": "move-06-progress.png", "text": "Six months of effort, unaccounted for.", "dur": 3.0 },
+        { "src": "fuel-06-mybody.png", "text": "Unless something was quietly writing it down.", "dur": 3.6 }
+      ],
+      "endCard": "d02-receipts.png"
+    },
+    {
+      "id": "d03-scan-label",
+      "requires": "none",
+      "theme": "dark",
+      "hook": "The reason you gave up tracking\nlast time was the setting up.",
+      "beats": [
+        { "src": "opt-scan.png", "text": "Point the camera at the label.", "dur": 3.4 },
+        { "src": "opt-02-log-sheet.png", "text": "Read on the device. Nothing uploaded.", "dur": 3.2 },
+        { "src": "opt-01-today.png", "text": "And it is on your day. That was the setup.", "dur": 3.4 }
+      ],
+      "endCard": "d03-scan-label.png"
+    },
+    {
+      "id": "d04-overlay",
+      "requires": "pro_live",
+      "theme": "dark",
+      "hook": "I needed to know whether any of it\nwas actually doing anything.",
+      "beats": [
+        { "src": "move-06-progress.png", "text": "So the chart marks the day you started.", "dur": 3.4 },
+        { "src": "opt-01-today.png", "text": "It takes that date from your protocol.", "dur": 3.0 },
+        { "src": "fuel-06-mybody.png", "text": "A standalone workout app cannot draw that line.", "dur": 3.8 }
+      ],
+      "endCard": "d04-overlay.png"
+    },
+    {
+      "id": "d05-it-knew",
+      "requires": "none",
+      "theme": "dark",
+      "hook": "I never turned this on.\nIt just knew.",
+      "beats": [
+        { "src": "opt-01-today.png", "text": "A GLP-1 protocol, logged in Optimise.", "dur": 3.0 },
+        { "src": "fuel-01-today.png", "text": "Fuel switched itself to muscle retention.", "dur": 3.4 },
+        { "src": "fuel-05b-progress.png", "text": "Protein first. Calories second.", "dur": 3.4 }
+      ],
+      "endCard": "d05-it-knew.png"
+    },
+    {
+      "id": "d06-stop-calories",
+      "requires": "none",
+      "theme": "light",
+      "hook": "The weight is coming off.\nThat is not the part to watch.",
+      "beats": [
+        { "src": "fuel-01-today.png", "text": "On a GLP-1 you are already eating under.", "dur": 3.4 },
+        { "src": "fuel-04-quickadd.png", "text": "What decides how much you keep is protein.", "dur": 3.4 },
+        { "src": "fuel-05b-progress.png", "text": "Lose the fat. Keep the muscle.", "dur": 3.4 }
+      ],
+      "endCard": "d06-stop-calories.png"
+    },
+    {
+      "id": "d07-receipts-week1",
+      "requires": "pro_live",
+      "theme": "dark",
+      "hook": "Week one of charging money.\nHere is the number I would rather not post.",
+      "beats": [
+        { "src": "optimise-paywall.png", "text": "Subscribers. Downloads.", "dur": 3.0 },
+        { "src": "fuel-06-mybody.png", "text": "Refunds. Cancellations. Same size type.", "dur": 3.6 }
+      ],
+      "endCard": "d07-receipts-week1.png"
+    },
+    {
+      "id": "d08-alignment",
+      "requires": "pro_live",
+      "theme": "dark",
+      "hook": "You are doing everything right.\nYou just cannot see it yet.",
+      "beats": [
+        { "src": "move-06-progress.png", "text": "Your strength says one thing.", "dur": 3.2 },
+        { "src": "fuel-05b-progress.png", "text": "Your protein says another.", "dur": 3.2 },
+        { "src": "fuel-06-mybody.png", "text": "One number for whether they agree with your goal.", "dur": 3.8 }
+      ],
+      "endCard": "d08-alignment.png"
+    },
+    {
+      "id": "d09-airplane-mode",
+      "requires": "none",
+      "theme": "light",
+      "hook": "Nobody in my life\nknows I am on this.",
+      "beats": [
+        { "src": "opt-01-today.png", "text": "It works with the phone in airplane mode.", "dur": 3.2 },
+        { "src": "fuel-01-today.png", "text": "No ads. No data sales. No tracking.", "dur": 3.2 },
+        { "src": "move-02-start.png", "text": "Face ID on the app. Photos stay on the device.", "dur": 3.6 }
+      ],
+      "endCard": "d09-airplane-mode.png"
+    },
+    {
+      "id": "d10-only-one",
+      "requires": "pro_live",
+      "theme": "light",
+      "hook": "“I only want the workout one.”",
+      "beats": [
+        { "src": "move-01-today.png", "text": "Then take just that one.", "dur": 3.0 },
+        { "src": "move-paywall.png", "text": "Every app has its own plan.", "dur": 3.4 },
+        { "src": "fuel-06-mybody.png", "text": "Add the others whenever. Never charged twice.", "dur": 3.6 }
+      ],
+      "endCard": "d10-only-one.png"
+    },
+    {
+      "id": "d11-one-fortnight",
+      "requires": "none",
+      "theme": "dark",
+      "hook": "You already have the answer.\nIt is sitting in three different places.",
+      "beats": [
+        { "src": "opt-01-today.png", "text": "A fortnight of protocol.", "dur": 3.0 },
+        { "src": "move-06-progress.png", "text": "The same fortnight of training.", "dur": 3.0 },
+        { "src": "fuel-05-diary.png", "text": "The same fortnight of food.", "dur": 3.0 },
+        { "src": "fuel-06-mybody.png", "text": "One timeline, and suddenly you can read it.", "dur": 3.8 }
+      ],
+      "endCard": "d11-one-fortnight.png"
+    },
+    {
+      "id": "d12-priced-against",
+      "requires": "pro_live",
+      "theme": "light",
+      "hook": "I did not want to charge you\nthree times for one body.",
+      "beats": [
+        { "src": "fuel-06-mybody.png", "text": "Three apps, one account.", "dur": 3.0 },
+        { "src": "move-06-progress.png", "text": "Built to share data from the first day.", "dur": 3.0 },
+        { "src": "optimise-paywall.png", "text": "So one subscription covers all three.", "dur": 3.6 }
+      ],
+      "endCard": "d12-priced-against.png"
+    },
+    {
+      "id": "d13-couldnt-answer",
+      "requires": "none",
+      "theme": "dark",
+      "hook": "A doctor asked what I had been doing.\nI could not answer.",
+      "beats": [
+        { "src": "opt-02-log-sheet.png", "text": "It was all written down somewhere.", "dur": 3.2 },
+        { "src": "move-06-progress.png", "text": "None of it was written down together.", "dur": 3.2 },
+        { "src": "fuel-06-mybody.png", "text": "Now it takes about four seconds.", "dur": 3.6 }
+      ],
+      "endCard": "d13-couldnt-answer.png"
+    },
+    {
+      "id": "d14-what-changed",
+      "requires": "pro_live",
+      "theme": "dark",
+      "hook": "You were worried\nI would take something away.",
+      "beats": [
+        { "src": "opt-01-today.png", "text": "Everything that was free is still free.", "dur": 3.2 },
+        { "src": "fuel-06-mybody.png", "text": "Pro added the deeper end on top.", "dur": 3.2 },
+        { "src": "optimise-paywall.png", "text": "That is the whole of what changed.", "dur": 3.4 }
+      ],
+      "endCard": "d14-what-changed.png"
+    }
+  ]
+}

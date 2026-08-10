@@ -1,0 +1,42 @@
+pro_live
+
+# ─────────────────────────────────────────────────────────────────────────
+# THE GATE. The first non-comment line is the status. The daily workflow
+# reads it into LAUNCH_STATUS and post.js refuses to publish any post marked
+# requires: pro_live until it says pro_live.
+#
+# Values:
+#
+#   pre_pro    Subscriptions not approved. The apps are live and free.
+#              Gated posts hold; the holding queue rotates instead.
+#
+#   pro_live   All twelve subscriptions read Approved in App Store Connect
+#              AND the sandbox cross-app purchase has been tested. Only then.
+#              ← CURRENT, set 9 August 2026. Both conditions were met and
+#                verified on the day, not inferred from an email:
+#
+#                • All three apps read Ready for Distribution, and all twelve
+#                  subscriptions read Approved across the three groups
+#                  (22278395 Optimise, 22281891 Move, 22282100 Fuel).
+#                • The cross-app purchase was tested in the sandbox. A
+#                  purchase of com.mybodyoptimise.fuel.family.pro.annual made
+#                  IN FUEL granted the shared `pro` entitlement on the
+#                  customer record, proving the entitlement is account-level
+#                  rather than app-level. RevenueCat read: pro / My Body Pro
+#                  Annual / Active trial.
+#
+#                Two false positives were ruled out getting there, both worth
+#                knowing about because either can make a broken build look
+#                fine: an account created before 8 Aug is grandfathered and
+#                unlocks Pro regardless, and an app whose offering returns no
+#                packages sets monetizationLive false, which also unlocks
+#                everything. Test with a fresh account, and check the paywall
+#                actually shows prices, before trusting any result.
+#
+# Change the first line to pro_live and push. That single edit starts the
+# fourteen-post campaign on the next morning run. Nothing else to touch.
+#
+# Do not set this from an approval email. Read the App Store Connect
+# dashboard, and run the sandbox purchase first — a subscription that does
+# not unlock across all three apps is the one failure that costs refunds.
+# ─────────────────────────────────────────────────────────────────────────

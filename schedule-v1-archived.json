@@ -1,0 +1,108 @@
+[
+  {
+    "date": "2026-07-24",
+    "pillar": "family-opener",
+    "images": ["post-01-mon-family.png"],
+    "caption": "Three apps. One body. One account. Optimise tracks the protocol, Move logs the training, Fuel guards the protein — and because they share a login, they actually talk to each other. Most trackers make you stitch that together yourself. Launching together, days away. 18+. Personal tracking, not medical advice.",
+    "hashtags": "#peptides #TRT #biohacking #healthoptimisation #quantifiedself #madeintheuk"
+  },
+  {
+    "date": "2026-07-25",
+    "pillar": "number",
+    "images": ["post-02-tue-number.png"],
+    "caption": "Not a step count. An alignment score. One number for how well your weight, your strength and your protein line up with the goal you actually set — computed across all three apps. No single-app tracker can draw it. Coming soon.",
+    "hashtags": "#biohacking #longevity #peptides #GLP1 #healthtech #quantifiedself"
+  },
+  {
+    "date": "2026-07-26",
+    "pillar": "private-free",
+    "images": ["post-04-thu-private-free.png"],
+    "caption": "Free to start. Never tracked. Every app's core is free at launch — no trial countdown, no paywall the second you open it — and we don't sell your data or run ad tracking. Most health apps treat your data as the product. We built the opposite. Coming soon.",
+    "hashtags": "#privacy #peptides #biohacking #healthtech #freeapp #indiedev"
+  },
+  {
+    "date": "2026-07-27",
+    "pillar": "educational",
+    "images": [
+      "post-03-wed-carousel-cover.png",
+      "post-03-carousel-02.png",
+      "post-03-carousel-03.png",
+      "post-03-carousel-04.png",
+      "post-03-carousel-05.png",
+      "post-03-carousel-06.png",
+      "post-03-carousel-07.png"
+    ],
+    "caption": "Tracking a protocol is the difference between guessing and knowing — but most people get a few things wrong. Here are 5. Swipe 👉 and save it for your next cycle. (Educational only, not medical advice.)",
+    "hashtags": "#peptides #biohacking #TRT #healthoptimisation #longevity"
+  },
+  {
+    "date": "2026-07-28",
+    "pillar": "family-hero",
+    "images": ["post-05-fri-picture.png"],
+    "caption": "\"Weight down 2.4kg, strength held, protein averaged 142g a day.\" That's one sentence — drawn from three apps sharing one account. It's the line a coach actually wants, and the thing no standalone tracker can write. Coming soon.",
+    "hashtags": "#peptides #TRT #GLP1 #biohacking #protein #healthoptimisation"
+  },
+  {
+    "date": "2026-07-29",
+    "pillar": "number-glp1",
+    "images": ["post-07-bonus-glp1.png"],
+    "caption": "On a GLP-1? Appetite down, muscle defended. The weight comes off fast — Fuel keeps your protein floor in sight so what you lose is fat, not muscle, and it logs how the protocol actually makes you feel. Part of the My Body family. Coming soon. 18+.",
+    "hashtags": "#GLP1 #semaglutide #tirzepatide #weightloss #protein #biohacking"
+  },
+  {
+    "date": "2026-07-30",
+    "pillar": "countdown",
+    "images": ["post-06-sat-countdown.png"],
+    "caption": "It's out of our hands. All three apps — Optimise, Move and Fuel — are with Apple for review. Months of building, and now we wait like everyone else. Built in the UK, launching together, days away. Turn on notifications to be first in.",
+    "hashtags": "#buildinpublic #indiedev #peptides #biohacking #madeintheuk #comingsoon"
+  },
+  {
+    "date": "2026-07-31",
+    "pillar": "educational",
+    "images": ["post-w2-08-reconstitution.png"],
+    "caption": "Reconstitution is just maths — but it's the maths people get wrong. Enter your vial, your BAC water and your target dose; Optimise gives you the exact units to draw. No more squinting at a syringe. Coming soon. 18+, not medical advice.",
+    "hashtags": "#peptides #reconstitution #biohacking #TRT #healthoptimisation"
+  },
+  {
+    "date": "2026-08-01",
+    "pillar": "family",
+    "images": ["post-w2-09-move-strength.png"],
+    "caption": "Did the protocol actually do anything? Move lays your strength over your protocol start dates, so a +14% squat isn't a guess — it's on the timeline. Protocol + training, one account. Coming soon.",
+    "hashtags": "#TRT #peptides #gym #strength #biohacking #quantifiedself"
+  },
+  {
+    "date": "2026-08-02",
+    "pillar": "private-free",
+    "images": ["post-w2-10-private.png"],
+    "caption": "We never sell your data. No ad tracking, Face ID lock, your protocol on your device. Most health apps are the product — this one isn't. Coming soon.",
+    "hashtags": "#privacy #peptides #biohacking #healthtech #dataprivacy"
+  },
+  {
+    "date": "2026-08-03",
+    "pillar": "number",
+    "images": ["post-w2-11-fuel-floor.png"],
+    "caption": "Protein-first, on purpose. Fuel gives you one number to clear each day — set from your weight and your goal — and gets out of the way. Hit your floor. Coming soon. 18+.",
+    "hashtags": "#protein #GLP1 #nutrition #fitness #biohacking"
+  },
+  {
+    "date": "2026-08-04",
+    "pillar": "number",
+    "images": ["post-w2-12-levels.png"],
+    "caption": "Where does your compound actually sit between doses? Optimise estimates peak, trough and everything in between from each compound's half-life. Know your numbers. Coming soon. Educational only, not medical advice.",
+    "hashtags": "#peptides #biohacking #TRT #longevity #healthoptimisation"
+  },
+  {
+    "date": "2026-08-05",
+    "pillar": "educational",
+    "images": ["post-w2-13-sites.png"],
+    "caption": "Same spot every dose is how sites get sore and scarred. Optimise maps where you've injected so the next one's always fresh. Rotate — every time. Save this. (Educational only, not medical advice.)",
+    "hashtags": "#peptides #injection #TRT #biohacking #healthoptimisation"
+  },
+  {
+    "date": "2026-08-06",
+    "pillar": "countdown",
+    "images": ["post-w2-14-countdown.png"],
+    "caption": "Almost there. Three apps, one account, with Apple for review — the moment they're live, you'll be first to know. Built in the UK. Turn on notifications.",
+    "hashtags": "#buildinpublic #indiedev #peptides #biohacking #madeintheuk #comingsoon"
+  }
+]

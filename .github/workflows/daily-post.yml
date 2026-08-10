@@ -1,39 +1,66 @@
 name: Daily Instagram post
 
-# Posts the scheduled entry for today (Europe/London) to Instagram.
-# Runs at 07:00 UTC ≈ 08:00 UK (BST). GitHub may delay scheduled runs by a
-# few minutes under load — fine for a morning post. You can also run it
-# manually from the Actions tab (with an optional date override / dry run).
+# Publishes the next post in the campaign at 08:00 UK. Reads launch-status.txt
+# so a post that names a price cannot go out before the subscriptions are
+# approved. Commits posted.log back, which is how sequence position survives
+# between runs.
 
 on:
   schedule:
-    - cron: "0 7 * * *"
+    - cron: "0 7 * * *"        # 07:00 UTC ≈ 08:00 UK during BST
   workflow_dispatch:
     inputs:
-      date_override:
-        description: "Force a date (YYYY-MM-DD). Leave blank for today."
+      post_id:
+        description: "Publish one specific post id (e.g. d04-overlay). Blank = next in sequence."
         required: false
         default: ""
       dry_run:
-        description: "Dry run (log the API calls, do not publish)"
+        description: "Dry run — log the API calls, publish nothing"
         type: boolean
         required: false
         default: false
+
+permissions:
+  contents: write               # needed to commit posted.log
 
 jobs:
   post:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Publish today's post
+
+      - name: Read the launch-status gate
+        id: gate
+        run: |
+          STATUS=$(grep -v '^[[:space:]]*#' launch-status.txt | grep -v '^[[:space:]]*$' | head -1 | tr -d '[:space:]')
+          echo "status=$STATUS" >> "$GITHUB_OUTPUT"
+          echo "Launch status: $STATUS"
+
+      - name: Publish
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           GRAPH_VERSION: v21.0
-          IMAGE_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/images
-          DATE_OVERRIDE: ${{ github.event.inputs.date_override }}
+          MEDIA_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/media
+          LAUNCH_STATUS: ${{ steps.gate.outputs.status }}
+          DEFAULT_AUDIO_NAME: "optimise. — original audio"
+          POST_ID_OVERRIDE: ${{ github.event.inputs.post_id }}
           DRY_RUN: ${{ github.event.inputs.dry_run }}
         run: node post.js
+
+      - name: Record what went out
+        if: github.event.inputs.dry_run != 'true'
+        run: |
+          if [ -n "$(git status --porcelain posted.log)" ]; then
+            git config user.name  "my-body-bot"
+            git config user.email "bot@mybodyoptimise.com"
+            git add posted.log
+            git commit -m "posted: $(tail -1 posted.log | cut -f2)"
+            git push
+          else
+            echo "Nothing published, nothing to record."
+          fi
