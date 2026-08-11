@@ -1,6 +1,13 @@
 node_modules/
 new_token.txt
 *.log
+# …except this one. posted.log is the campaign's memory: it is the only record
+# of which posts have gone out, and the daily workflow commits it back after
+# every publish. Caught by "*.log" it was never committed, so alreadyPosted()
+# read an empty set on every run, the sequence restarted at d01 each morning,
+# and "Record what went out" reported nothing to record because git ignores an
+# ignored file. Do not remove this negation.
+!posted.log
 .env
 
 # ─── Never publish these ─────────────────────────────────────────────────

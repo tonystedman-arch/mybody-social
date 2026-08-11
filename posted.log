@@ -1,0 +1,5 @@
+# date	post id	instagram media id
+# Appended by post.js after each successful publish, and committed back by the
+# daily workflow. This file is how the campaign knows where it is in the
+# sequence — do not clear it once the run has started.
+2026-08-10	receipt	18004601522972070

@@ -61,24 +61,54 @@ async function containerReady(id, { tries = 60, waitMs = 5000 } = {}) {
   throw new Error(`Container ${id} not ready after ${tries} polls`);
 }
 
+// Meta's transcoder fails intermittently on media it will happily accept on the
+// next attempt. Code 2207052 ("Media upload has failed") is the common one, and
+// Meta's own guidance is to retry rather than to change the file. On 11 Aug 2026
+// d01-the-sentence died on this with a file that is byte-for-byte the same shape
+// as receipt.mp4, which had published fine 13 hours earlier — same encoder, same
+// atom order, same codecs. One unlucky transcode cost the whole day's post.
+//
+// So: create the container, wait for it, and on a retryable failure throw the
+// container away and build a fresh one. Non-retryable errors (bad token, a 404
+// on the media URL, a rejected caption) still fail on the first attempt, because
+// retrying those just wastes six minutes and hides the real cause.
+const RETRYABLE = [2207052, 2207003, 2207001, 2207020, 2207026];
+
+function isRetryable(err) {
+  const m = String(err && err.message || '');
+  return RETRYABLE.some(code => m.includes(String(code)));
+}
+
+async function createAndWait(params, pollOpts, { attempts = 3, backoffMs = 20000 } = {}) {
+  for (let attempt = 1; ; attempt++) {
+    const c = await api(`${IG_USER_ID}/media`, params);
+    try {
+      await containerReady(c.id, pollOpts);
+      return c.id;
+    } catch (err) {
+      if (attempt >= attempts || !isRetryable(err)) throw err;
+      log(`  ⟳ attempt ${attempt} failed (${err.message}). Rebuilding the container in ${backoffMs / 1000}s.`);
+      await new Promise(r => setTimeout(r, backoffMs));
+    }
+  }
+}
+
 async function publishImage(url, caption) {
   if (DRY_RUN) { log('  DRY_RUN image →', url); return 'dry-run'; }
-  const c = await api(`${IG_USER_ID}/media`, { image_url: url, caption });
-  await containerReady(c.id, { tries: 30, waitMs: 3000 });
-  return (await api(`${IG_USER_ID}/media_publish`, { creation_id: c.id })).id;
+  const id = await createAndWait({ image_url: url, caption }, { tries: 30, waitMs: 3000 });
+  return (await api(`${IG_USER_ID}/media_publish`, { creation_id: id })).id;
 }
 
 async function publishCarousel(urls, caption) {
   if (DRY_RUN) { log('  DRY_RUN carousel →', urls.join(', ')); return 'dry-run'; }
   const children = [];
   for (const url of urls) {
-    const child = await api(`${IG_USER_ID}/media`, { image_url: url, is_carousel_item: 'true' });
-    await containerReady(child.id, { tries: 30, waitMs: 3000 });
-    children.push(child.id);
+    children.push(await createAndWait({ image_url: url, is_carousel_item: 'true' },
+                                      { tries: 30, waitMs: 3000 }));
   }
-  const c = await api(`${IG_USER_ID}/media`, { media_type: 'CAROUSEL', children: children.join(','), caption });
-  await containerReady(c.id, { tries: 30, waitMs: 3000 });
-  return (await api(`${IG_USER_ID}/media_publish`, { creation_id: c.id })).id;
+  const id = await createAndWait({ media_type: 'CAROUSEL', children: children.join(','), caption },
+                                 { tries: 30, waitMs: 3000 });
+  return (await api(`${IG_USER_ID}/media_publish`, { creation_id: id })).id;
 }
 
 // Meta's Content Publishing API cannot attach music-library tracks — audio has
@@ -95,9 +125,8 @@ async function publishReel(videoUrl, caption, coverUrl, audioName) {
   const params = { media_type: 'REELS', video_url: videoUrl, caption, share_to_feed: 'true' };
   if (coverUrl) params.cover_url = coverUrl;
   if (audioName) params.audio_name = audioName;
-  const c = await api(`${IG_USER_ID}/media`, params);
-  await containerReady(c.id);                       // transcode, be patient
-  return (await api(`${IG_USER_ID}/media_publish`, { creation_id: c.id })).id;
+  const id = await createAndWait(params, {});     // transcode, be patient
+  return (await api(`${IG_USER_ID}/media_publish`, { creation_id: id })).id;
 }
 
 async function publishStory(url, isVideo) {
@@ -105,9 +134,8 @@ async function publishStory(url, isVideo) {
   const params = isVideo
     ? { media_type: 'STORIES', video_url: url }
     : { media_type: 'STORIES', image_url: url };
-  const c = await api(`${IG_USER_ID}/media`, params);
-  await containerReady(c.id, isVideo ? {} : { tries: 30, waitMs: 3000 });
-  return (await api(`${IG_USER_ID}/media_publish`, { creation_id: c.id })).id;
+  const id = await createAndWait(params, isVideo ? {} : { tries: 30, waitMs: 3000 });
+  return (await api(`${IG_USER_ID}/media_publish`, { creation_id: id })).id;
 }
 
 // ── the gate ────────────────────────────────────────────────────────────────
@@ -166,7 +194,8 @@ async function publishEntry(entry) {
 async function alreadyPosted() {
   try {
     const raw = await readFile(new URL('./posted.log', import.meta.url), 'utf8');
-    return new Set(raw.split('\n').map(l => l.split('\t')[1]).filter(Boolean));
+    return new Set(raw.split('\n').filter(l => !l.startsWith('#'))
+                      .map(l => l.split('\t')[1]).filter(Boolean));
   } catch { return new Set(); }
 }
 
@@ -227,8 +256,10 @@ async function main() {
 
   // Append to a posted log so the insights workflow knows what to measure.
   if (!DRY_RUN && id !== 'dry-run') {
+    // Not .catch(()=>{}) — if this write fails the sequence silently restarts
+    // from d01 tomorrow and the same post goes out twice.
     await appendFile(new URL('./posted.log', import.meta.url),
-                     `${today}\t${entry.id}\t${id}\n`).catch(() => {});
+                     `${today}\t${entry.id}\t${id}\n`);
   }
 }
 

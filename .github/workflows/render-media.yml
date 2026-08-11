@@ -7,12 +7,15 @@ name: Rebuild media
 on:
   push:
     paths:
-      - "build/reels.json"
-      - "build/render-pro-launch-v2.py"
-      - "build/render-social-assets.py"
-      - "build/build_reels.py"
-      - "build/raw/**"
+      - "build/**"              # any build source, spec or raw capture
+      - ".github/workflows/render-media.yml"
   workflow_dispatch:
+
+# The paths list used to name five files individually, which meant edits to
+# build_music.py, build_receipt.py, build-all.sh or this workflow itself
+# changed nothing and silently produced no run — easily mistaken for a
+# failure. "build/**" covers every source; listing this file means a fix to
+# the CI recipe re-runs and proves itself.
 
 permissions:
   contents: write
