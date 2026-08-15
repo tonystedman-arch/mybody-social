@@ -5,9 +5,33 @@ name: Daily Instagram post
 # approved. Commits posted.log back, which is how sequence position survives
 # between runs.
 
+# ─────────────────────────────────────────────────────────────────────────
+# PAUSED 15 August 2026. The daily schedule is commented out deliberately —
+# not broken, not abandoned.
+#
+# Why: every post in this repo sells "three apps, one account." The 14 Aug
+# decision (docs/product/My Body 3.0 - Build Plan) collapses the three apps
+# into one, so that sentence is now false. The Growth Rethink of the same
+# date already called for brand posting to stop; this is that decision
+# reaching the machine.
+#
+# Note for whoever restarts this: setting launch-status.txt to pre_pro does
+# NOT stop publishing. It only holds posts marked `requires: pro_live`. The
+# four posts in the holding queue are `requires: none` and would keep
+# rotating — and all four carry the three-app copy. Disabling the cron is
+# the only switch that actually stops the account.
+#
+# workflow_dispatch is left enabled, so a single post can still be fired by
+# hand if needed.
+#
+# To restart: uncomment the two schedule lines below, and only after the
+# captions have been rewritten for the merged app.
+# See marketing/content/My Body - Marketing Reconciliation to 3.0 (Aug 2026).md
+# ─────────────────────────────────────────────────────────────────────────
+
 on:
-  schedule:
-    - cron: "0 7 * * *"        # 07:00 UTC ≈ 08:00 UK during BST
+  # schedule:
+  #   - cron: "0 7 * * *"        # 07:00 UTC ≈ 08:00 UK during BST
   workflow_dispatch:
     inputs:
       post_id:
