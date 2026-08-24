@@ -1,6 +1,6 @@
 # My Body — Instagram performance
 
-Generated 2026-08-17. Ranked by **saves + shares**, which is what the
+Generated 2026-08-24. Ranked by **saves + shares**, which is what the
 recommendation engine actually rewards. Likes are shown but not ranked on.
 
 ## The decision
@@ -20,7 +20,7 @@ for something that is not landing.
 
 | Posts | Reach | Views | Saves | Shares | Likes | Comments |
 |---|---|---|---|---|---|---|
-| 23 | 604 | 621 | 0 | 5 | 12 | 1 |
+| 23 | 618 | 636 | 0 | 5 | 12 | 1 |
 
 ## Every post
 
@@ -28,9 +28,9 @@ for something that is not landing.
 |---|---|---|---|---|---|---|---|---|
 | 1 | 2026-07-27 | FEED | Tracking a protocol is the difference between guessing and knowing — but most  | 5 | 0 | 0 | 4 | **4** |
 | 2 | 2026-08-04 | REELS | Four months in. Could you actually prove it is working? | 74 | 88 | 0 | 1 | **1** |
-| 3 | 2026-08-17 | REELS | You are doing everything right. You just cannot see it yet. | 1 | 2 | 0 | 0 | **0** |
+| 3 | 2026-08-17 | REELS | You are doing everything right. You just cannot see it yet. | 14 | 16 | 0 | 0 | **0** |
 | 4 | 2026-08-16 | REELS | The weight is coming off. That is not the part to watch. | 123 | 126 | 0 | 0 | **0** |
-| 5 | 2026-08-15 | REELS | I never turned this on. It just knew. | 27 | 28 | 0 | 0 | **0** |
+| 5 | 2026-08-15 | REELS | I never turned this on. It just knew. | 28 | 29 | 0 | 0 | **0** |
 | 6 | 2026-08-14 | REELS | I needed to know whether any of it was actually doing anything. | 17 | 16 | 0 | 0 | **0** |
 | 7 | 2026-08-13 | REELS | The reason you gave up tracking last time was the setting up. | 84 | 97 | 0 | 0 | **0** |
 | 8 | 2026-08-12 | REELS | You will not remember what you did in March. | 136 | 145 | 0 | 0 | **0** |
