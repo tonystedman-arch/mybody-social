@@ -1,6 +1,6 @@
 # My Body — Instagram performance
 
-Generated 2026-09-07. Ranked by **saves + shares**, which is what the
+Generated 2026-09-14. Ranked by **saves + shares**, which is what the
 recommendation engine actually rewards. Likes are shown but not ranked on.
 
 ## The decision
